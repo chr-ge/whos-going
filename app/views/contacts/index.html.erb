@@ -1,0 +1,8 @@
+<h1 class="text-3xl font-bold">My Contacts</h1>
+<div class="flex flex-row mt-2 border border-black rounded">
+    <% @contacts.each do |contact| %>
+        <div>
+            <h1><% contact.full_name %></h1>
+        </div>
+    <% end %>
+</div>
