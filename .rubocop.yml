@@ -1,0 +1,29 @@
+AllCops:
+  Exclude:
+    - '**/*.gemfile'
+    - '**/Gemfile'
+    - '**/Rakefile'
+    - 'db/**/*'
+    - 'bin/**'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'node_modules/**/*'
+  TargetRubyVersion: 2.7
+
+Layout/LineLength:
+  Max: 120
+  Exclude: 
+    - 'config/initializers/devise.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Layout/EndOfLine:
+  Exclude:
+    - 'spec/**'
+
+Metrics/BlockLength:
+  Exclude: 
+    - 'config/environments/production.rb'
+    - 'spec/**/*'
+    
