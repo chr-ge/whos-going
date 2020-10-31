@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_contact, only: %i[show edit update destroy]
 
   def index
     @contacts = Contact.order('full_name ASC')
@@ -27,7 +27,7 @@ class ContactsController < ApplicationController
 
   def update
     if @contact.update(contact_params)
-      redirect_to @contact, notice: "Contact updated successfully."
+      redirect_to @contact, notice: 'Contact updated successfully.'
     else
       render :edit
     end
@@ -46,6 +46,6 @@ class ContactsController < ApplicationController
 
   def contact_params
     params.require(:contact)
-          .permit(:full_name, :organization, :notes, :emails => [:label, :email])
+          .permit(:full_name, :organization, :notes, emails: %i[label email])
   end
 end
