@@ -2,7 +2,7 @@
 
 class Contact < ApplicationRecord
   has_many :emails, inverse_of: :contact, dependent: :destroy
-  accepts_nested_attributes_for :emails, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :emails, allow_destroy: true, reject_if: proc { |att| att['email'].blank? }
 
   validates :full_name, presence: true
 end
