@@ -1,0 +1,49 @@
+<div class="flex items-center justify-between">
+  <div class="flex items-center">
+    <img src="https://avatars.dicebear.com/api/initials/<%= @contact.full_name %>.svg?options[bold]=1" class="w-20 rounded-md" />
+    <h1 class="ml-4 text-3xl font-bold"><%= @contact.full_name %></h1>
+  </div>
+  <div class="flex">
+    <%= link_to edit_contact_path @contact do %>
+      <%= inline_svg "edit", class: "mr-2 w-10 h-10 hover:bg-gray-100 rounded"%>
+    <% end %>
+    <%= link_to @contact, method: :delete do %>
+      <%= inline_svg "trash", class: "w-10 h-10 hover:bg-red-100 rounded"%>
+    <% end %>
+  </div>
+</div>
+<div class="p-6 mt-4 bg-white rounded-lg shadow">
+  <div class="relative p-2 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
+    <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+      <p class="px-1 text-gray-600 bg-white">Organization</p>
+    </div>
+    <p class="block w-full h-full px-2 py-1 text-gray-900 outline-none"><%= @contact.organization %></p>
+  </div>
+  <div class="flex my-10">
+    <div class="w-1/2 mr-3">
+      <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500" >
+        <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+          <p class="px-1 text-gray-600 bg-white">Emails</p>
+        </div>
+        <div id="emails_field">
+          <% @contact.emails.each do |e| %>
+            <p class="p-2 bg-white"><span class="font-bold"><%= e.label + ": " %></span><%= e.email %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="w-1/2 ml-3">
+      <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
+        <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+          <p class="px-1 text-gray-600 bg-white">Phone Numbers</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="relative p-1 py-2 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
+    <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+      <p class="px-1 text-gray-600 bg-white">Notes</p>
+    </div>
+    <textarea class="p-2 pointer-events-none resize-none select-none focus:outline-none focus:shadow-outline"><%= @contact.notes %></textarea>
+  </div>
+</div>
