@@ -1,7 +1,7 @@
 <div class="flex items-center justify-between h-12 p-4 mx-2 my-4 border border-gray-100 rounded-lg shadow nested-fields">
   <div class="flex items-center w-full">
     <%= f.select :label, Email::LABELS, {}, class: "font-semibold text-gray-600" %>
-    <%= f.text_field :email, class: "mx-4 w-full text-gray-800" %>
+    <%= f.email_field :email, class: "mx-4 w-full text-gray-800" %>
   </div>
   <%= link_to_remove_association f, class: "flex items-center justify-center p-2 bg-red-400 rounded-full shadow-md hover:bg-red-500" do %>
     <svg class="w-4 h-4 text-white toggle__lock" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
