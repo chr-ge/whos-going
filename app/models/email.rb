@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Email < ApplicationRecord
-  belongs_to :contact, optional: true
+  belongs_to :contact
   LABELS = %w[Email Home Work Other].freeze
 
   validates :email, presence: true
