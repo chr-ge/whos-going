@@ -6,42 +6,55 @@
           <p><%= f.label :full_name, class: "px-1 text-gray-600 bg-white" %></p>
         </div>
         <p>
-          <%= f.text_field :full_name, autofocus: true, autocomplete: false, class: "block w-full h-full px-1 py-1 text-gray-900 outline-none", tabindex: 0 %>
+          <%= f.text_field :full_name, autofocus: true, autocomplete: false, class: "block w-full h-full px-2 py-1 text-gray-900 outline-none", tabindex: 0 %>
         </p>
       </div>
       <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
         <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
           <p><%= f.label :organization, class: "px-1 text-gray-600 bg-white" %></p>
         </div>
-        <p><%= f.text_field :organization, autofocus: true, autocomplete: false, class: "block w-full h-full px-1 py-1 text-gray-900 outline-none", tabindex: 0 %></p>
+        <p><%= f.text_field :organization, autofocus: true, autocomplete: false, class: "block w-full h-full px-2 py-1 text-gray-900 outline-none", tabindex: 0 %></p>
       </div>
     </div>
-    <div class="my-6 border-t" id="emails_field">
-      <h2 class="px-1 mt-2 text-xs tracking-wider text-gray-600 uppercase">Emails</h2>
-      <div class="flex items-center justify-between h-12 p-4 my-4 border border-gray-100 rounded-lg shadow" id="to_clone">
-        <div class="flex items-center">
-          <%= f.fields_for :emails, OpenStruct.new(f.object.emails || {}) do |e| %>
-            <%= e.select :label, Contact::EMAIL_LABELS, id: :label %>
-            <%= e.text_field :email, id: :email, class: "ml-4 text-sm font-semibold text-gray-600"%>
-          <% end %>
-        </div>
-        <div>
-          <button class="flex items-center justify-center p-2 bg-red-400 rounded-full shadow-md hover:bg-red-500" type="button" onclick="removeField(this)">
-            <svg class="w-4 h-4 text-white toggle__lock" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+    <div class="flex my-10">
+      <div class="w-1/2 mr-3">
+        <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500" >
+          <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+            <p class="px-1 text-gray-600 bg-white">Emails</p>
+          </div>
+          <div id="emails_field">
+            <%= f.fields_for :emails do |e| %>
+              <% render 'email_fields', f: e %>
+            <% end %>
+          </div>
+          <div class="flex items-center justify-center h-12 p-4 mx-2 my-4 bg-gray-200 rounded-lg shadow-inner">
+            <%= link_to_add_association f, :emails, class: "flex items-center px-2 py-1 border border-gray-400 border-dashed rounded cursor-pointer", data: { association_insertion_node: '#emails_field', association_insertion_method: :append } do %>
+              <div>
+                <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </div>
+              <div class="mx-1 font-medium text-gray-500">Add Another Email</div>
+            <% end %>
+          </div>
         </div>
       </div>
-      <div class="flex items-center justify-center h-12 p-4 my-4 bg-gray-200 rounded-lg shadow-inner" id="add_email">
-        <button class="flex items-center px-2 py-1 border border-gray-400 border-dashed rounded cursor-pointer" type="button" onclick="addEmailField()">
-          <div>
-            <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
+      <div class="w-1/2 ml-3">
+        <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
+          <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+            <p class="px-1 text-gray-600 bg-white">Phone Numbers</p>
           </div>
-          <div class="mx-1 font-medium text-gray-500">Add Another Email</div>
-        </button>
+          <div class="flex items-center justify-center h-12 p-4 mx-2 my-4 bg-gray-200 rounded-lg shadow-inner">
+            <button class="flex items-center px-2 py-1 border border-gray-400 border-dashed rounded cursor-pointer" type="button">
+              <div>
+                <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </div>
+              <div class="mx-1 font-medium text-gray-500">Add Another Phone Number</div>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="relative p-1 py-2 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
@@ -49,26 +62,11 @@
         <p><%= f.label :notes, class: "px-1 text-gray-600 bg-white" %></p>
       </div>
       <p>
-        <%= f.text_area :notes, rows: 4, class: "block w-full h-full px-1 py-1 text-gray-900 outline-none", tabindex: 0 %>
+        <%= f.text_area :notes, rows: 4, class: "block w-full h-full px-1 py-1 text-gray-900 outline-none", tabindex: 0, style: "max-height: 300px" %>
       </p>
     </div>
     <div class="pt-3 mt-6 text-center border-t">
-      <%= f.submit "Save Contact", class: "px-3 py-1 text-gray-100 transition-all duration-300 bg-blue-500 rounded hover:shadow-inner hover:bg-blue-700" %>
+      <%= f.submit "Save Contact", class: "px-3 py-1 text-gray-100 transition-all duration-300 bg-purple-600 rounded hover:shadow-inner hover:bg-purple-700 cursor-pointer" %>
     </div>
   <% end %>
 </div>
-<script type='text/javascript'>
-  function addEmailField(){
-    var container = document.getElementById("emails_field");
-    var ref = document.getElementById("add_email");
-    var itm = document.getElementById("to_clone");
-    var new_input = itm.cloneNode(true);
-    new_input.id = 'new_email'
-    container.insertBefore(new_input, ref);
-  }
-  function removeField(el){
-    if(el.parentNode.parentNode.parentNode.childElementCount > 3){
-      el.parentNode.parentNode.remove()
-    }
-  };
-</script>

@@ -847,6 +847,11 @@
     postcss "7.0.32"
     purgecss "^2.3.0"
 
+"@kollegorna/cocoon-vanilla-js@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@kollegorna/cocoon-vanilla-js/-/cocoon-vanilla-js-1.0.7.tgz#af897b69227f3ff1bd96a6618b86d4a983c94da4"
+  integrity sha512-ceu4Mtx7R6Lw7rUdDiODEcMBJCWxog+pO4OEEQKRRERrBqQeGM5zb6qSM5Z5/DJJooqmpY9ANyxt7XbfJMDVWQ==
+
 "@npmcli/move-file@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@npmcli/move-file/-/move-file-1.0.1.tgz#de103070dac0f48ce49cf6693c23af59c0f70464"

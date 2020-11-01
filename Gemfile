@@ -25,6 +25,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem "cocoon"
+gem 'inline_svg'
 gem 'rubocop', require: false
 
 # Reduces boot times through caching; required in config/boot.rb
