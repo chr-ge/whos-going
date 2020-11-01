@@ -44,15 +44,20 @@
           <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
             <p class="px-1 text-gray-600 bg-white">Phone Numbers</p>
           </div>
+          <div id="phones_field">
+            <%= f.fields_for :phone_numbers do |p| %>
+              <% render 'phone_number_fields', f: p %>
+            <% end %>
+          </div>
           <div class="flex items-center justify-center h-12 p-4 mx-2 my-4 bg-gray-200 rounded-lg shadow-inner">
-            <button class="flex items-center px-2 py-1 border border-gray-400 border-dashed rounded cursor-pointer" type="button">
+            <%= link_to_add_association f, :phone_numbers, class: "flex items-center px-2 py-1 border border-gray-400 border-dashed rounded cursor-pointer", data: { association_insertion_node: '#phones_field', association_insertion_method: :append } do %>
               <div>
                 <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
               </div>
               <div class="mx-1 font-medium text-gray-500">Add Another Phone Number</div>
-            </button>
+            <% end %>
           </div>
         </div>
       </div>
