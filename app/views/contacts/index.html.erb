@@ -1,7 +1,7 @@
 <h1 class="text-3xl font-bold">My Contacts</h1>
 <div class="flex my-3">
   <%= form_tag contacts_path, method: :get, class: "flex w-full px-4 py-2 bg-gray-800 rounded focus-within:bg-gray-700" do %>
-    <%= text_field_tag :search, params[:search], class: "w-full text-sm leading-tight text-gray-100 placeholder-gray-200 bg-gray-800 focus:outline-none focus:bg-gray-700" %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search", 'aria-label': "Search", class: "w-full text-sm leading-tight text-gray-100 placeholder-gray-200 bg-gray-800 focus:outline-none focus:bg-gray-700" %>
     <%= button_tag type: :submit, name: nil do %>
       <%= inline_svg_tag "search", class: "w-8 h-8" %>
     <% end %>
