@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem "cocoon"
 gem 'inline_svg'
+gem 'pg_search'
 gem 'rubocop', require: false
 
 # Reduces boot times through caching; required in config/boot.rb
