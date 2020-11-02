@@ -10,11 +10,11 @@ class Contact < ApplicationRecord
     proc { |att| att['phone_number'].blank? }
 
   validates :full_name, presence: true
-  pg_search_scope :search_for, 
-    associated_against: {
-      emails: %i( email ),
-      phone_numbers: %i( phone_number )
-    },
-    against: %i(full_name organization notes),
-    order_within_rank: "contacts.full_name ASC"
+  pg_search_scope :search_for,
+                  associated_against: {
+                    emails: %i[email],
+                    phone_numbers: %i[phone_number]
+                  },
+                  against: %i[full_name organization notes],
+                  order_within_rank: 'contacts.full_name ASC'
 end
