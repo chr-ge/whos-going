@@ -1,7 +1,7 @@
-<h1 class="text-3xl font-bold">My Contacts</h1>
+<h1 class="text-3xl font-bold">Search Results</h1>
 <div class="flex my-3">
   <%= form_tag contacts_path, method: :get, class: "flex w-full px-4 py-2 bg-gray-800 rounded focus-within:bg-gray-700" do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search", 'aria-label': "Search", class: "w-full text-sm leading-tight text-gray-100 placeholder-gray-200 bg-gray-800 focus:outline-none focus:bg-gray-700" %>
+    <%= text_field_tag :search, params[:search], class: "w-full text-sm leading-tight text-gray-100 placeholder-gray-200 bg-gray-800 focus:outline-none focus:bg-gray-700" %>
     <%= button_tag type: :submit, name: nil do %>
       <%= inline_svg_tag "search", class: "w-8 h-8" %>
     <% end %>
@@ -16,7 +16,10 @@
         <h1 class="ml-4 text-black"><%= contact.full_name %></h1>
       <% end %>
       <%= link_to edit_contact_path(contact) do %>
-        <%= inline_svg_tag "edit", class: "h-8 w-8 m-4 bg-gray-300 hover:bg-gray-400 rounded" %>
+        <%= inline_svg_tag "edit", class: "h-8 w-8 bg-gray-300 hover:bg-gray-400 rounded" %>
+      <% end %>
+      <%= link_to contact, method: :delete do %>
+        <%= inline_svg_tag "trash", class: "h-8 w-8 m-4 bg-red-200 hover:bg-red-300 rounded" %>
       <% end %>
     </div>
   <% end %>

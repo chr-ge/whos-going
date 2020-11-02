@@ -4,7 +4,12 @@ class ContactsController < ApplicationController
   before_action :set_contact, only: %i[show edit update destroy]
 
   def index
-    @contacts = Contact.order('full_name ASC')
+    if params[:search]&.present?
+      @contacts = Contact.search_for(params[:search])
+      render :search
+    else
+      @contacts = Contact.order('full_name ASC')
+    end
   end
 
   def show; end

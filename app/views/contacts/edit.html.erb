@@ -1,2 +1,5 @@
-<h1 class="mb-3 ml-3 text-3xl font-bold lg:ml-0">Edit Contact: <%= @contact.full_name %></h1>
+<div class="flex items-center mb-3 ml-3 lg:ml-0">
+  <%= inline_svg_tag "edit-contact", class: "w-12 h-12" %>
+  <h1 class="ml-4 text-3xl font-bold text-black">Edit Contact: <%= @contact.full_name %></h1>
+</div>
 <%= render "form", movie: @movie %>
