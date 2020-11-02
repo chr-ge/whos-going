@@ -1,6 +1,6 @@
 <div class="flex items-center justify-between">
   <div class="flex items-center">
-    <%= contact_image @contact, class: "w-20 h-20 rounded-md"%>
+    <%= contact_image @contact, class: "w-16 h-16 rounded-md"%>
     <h1 class="ml-4 text-3xl font-bold"><%= @contact.full_name %></h1>
   </div>
   <div class="flex">
@@ -25,9 +25,14 @@
         <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
           <p class="px-1 text-gray-600 bg-white">Emails</p>
         </div>
-        <div>
+        <div class="grid items-center w-full grid-cols-6 p-2">
           <% @contact.emails.each do |e| %>
-            <p class="p-2 bg-white"><span class="font-bold"><%= e.label + ": " %></span><%= e.email %></p>
+            <div class="col-span-1 py-1 font-semibold">
+              <%= e.label %>
+            </div>
+            <div class="col-span-5 py-1">
+              <%= e.email %>
+            </div>
           <% end %>
         </div>
       </div>
@@ -37,9 +42,14 @@
         <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
           <p class="px-1 text-gray-600 bg-white">Phone Numbers</p>
         </div>
-        <div>
+        <div class="grid items-center w-full grid-cols-6 p-2">
           <% @contact.phone_numbers.each do |p| %>
-            <p class="p-2 bg-white"><span class="font-bold"><%= p.label + ": " %></span><%= p.phone_number %></p>
+            <div class="col-span-1 py-1 font-semibold ">
+              <%= p.label %>
+            </div>
+            <div class="col-span-5 py-1">
+              <%= p.phone_number %>
+            </div>
           <% end %>
         </div>
       </div>
