@@ -8,7 +8,7 @@
   <% end %>
   <%= link_to "Add New Contact", new_contact_path, class: "ml-2 bg-gray-700 hover:bg-gray-800 rounded text-white p-2 text-center" %>
 </div>
-<div class="mt-6 overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+<div class="mt-5 overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
   <table class="min-w-full divide-y divide-gray-200">
     <thead>
       <tr>
@@ -28,9 +28,9 @@
               <span class="ml-4"><%= contact.full_name %></span>
             <% end %>
           </td>
-          <td class="px-6 py-4 whitespace-no-wrap "><%= contact.emails.first.email %></td>
-          <td class="px-6 py-4 whitespace-no-wrap"><%= contact.phone_numbers.first.phone_number %></td>
-          <td class="px-6 py-4 whitespace-no-wrap"><%= contact.organization %></td>
+          <td class="px-6 py-4 whitespace-no-wrap "><%= contact.emails.first.email if contact.emails.present? %></td>
+          <td class="px-6 py-4 whitespace-no-wrap"><%= contact.phone_numbers.first.phone_number if contact.phone_numbers.present? %></td>
+          <td class="px-6 py-4 whitespace-no-wrap"><%= contact.organization if contact.organization.present? %></td>
           <td class="px-6 py-4 whitespace-no-wrap">
             <div class="flex items-center justify-end">
               <%= link_to contact_path(contact) do %>
@@ -47,7 +47,7 @@
         </tr>
       <% end.empty? %>
         <tr>
-          <td colspan="5" class="px-6 py-4 text-center whitespace-no-wrap">
+          <td colspan="5" class="p-6 text-center whitespace-no-wrap">
             No Contacts Found.
           </td>
         </tr>

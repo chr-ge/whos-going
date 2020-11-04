@@ -1,0 +1,14 @@
+<div class="flex flex-col items-center justify-between lg:flex-row">
+  <div class="flex items-center">
+    <%= inline_svg_tag "event.svg", class: "w-16 h-16 rounded-md"%>
+    <h1 class="ml-4 text-3xl font-bold"><%= @event.name %></h1>
+  </div>
+  <div class="flex mt-4 lg:mt-0">
+    <%= link_to edit_event_path @event do %>
+      <%= inline_svg_tag "edit.svg", class: "mr-2 w-10 h-10 hover:bg-gray-100 rounded"%>
+    <% end %>
+    <%= link_to @event, method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <%= inline_svg_tag "trash.svg", class: "w-10 h-10 hover:bg-red-100 rounded"%>
+    <% end %>
+  </div>
+</div>

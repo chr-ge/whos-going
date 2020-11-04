@@ -28,6 +28,26 @@ RSpec.describe ContactsController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    let!(:contact) { create(:contact) }
+
+    subject { get :show, params: { id: contact.id } }
+
+    it 'sets contact as @contact' do
+      subject
+      expect(assigns(:contact)).to eq contact
+    end
+
+    it 'renders view' do
+      subject
+      expect(response).to render_template(:show)
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'GET #new' do
     subject { get :new }
 

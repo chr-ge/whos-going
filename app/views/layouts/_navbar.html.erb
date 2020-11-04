@@ -10,7 +10,7 @@
           <div class="hidden sm:block sm:ml-6">
             <div class="flex">
               <%= link_to "Contacts", contacts_path, class: "#{'bg-gray-900 hover:bg-gray-900' if current_page?(contacts_path)} mr-2 px-3 py-2 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700" %>
-              <%= link_to "Events", new_contact_path, class: "#{'bg-gray-900 hover:bg-gray-900' if current_page?(new_contact_path)} px-3 py-2 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700" %>
+              <%= link_to "Events", events_path, class: "#{'bg-gray-900 hover:bg-gray-900' if current_page?(events_path)} px-3 py-2 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700" %>
               </div>
           </div>
         </div>
@@ -20,7 +20,7 @@
     <div class="block sm:hidden">
       <div class="px-2 pt-1 pb-4 text-center">
         <%= link_to "Contacts", contacts_path, class: "px-3 py-2 mt-1 text-base font-medium text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700" %>
-        <%= link_to "Events", new_contact_path, class: "px-3 py-2 mt-1 text-base font-medium text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700" %>
+        <%= link_to "Events", events_path, class: "px-3 py-2 mt-1 text-base font-medium text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700" %>
       </div>
     </div>
   </div>

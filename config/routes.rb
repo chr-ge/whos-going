@@ -2,5 +2,6 @@
 
 Rails.application.routes.draw do
   resources :contacts
+  resources :events
   root 'contacts#index'
 end
