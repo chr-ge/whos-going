@@ -1,5 +1,5 @@
 <h1 class="mx-2 text-3xl font-bold lg:mx-0">My Contacts</h1>
-<div class="flex mx-2 my-3 lg:mx-0">
+<div class="flex mx-2 mt-3 mb-5 lg:mx-0">
   <%= form_tag contacts_path, method: :get, class: "flex w-full px-4 py-2 bg-gray-800 rounded focus-within:bg-gray-700" do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search", 'aria-label': "Search", class: "w-full text-sm leading-tight text-gray-100 placeholder-gray-200 bg-gray-800 focus:outline-none focus:bg-gray-700" %>
     <%= button_tag type: :submit, name: nil do %>
