@@ -13,12 +13,31 @@ RSpec.describe EventsController, type: :controller do
       expect(assigns(:events)).to match_array([event])
     end
 
-    it 'renders view' do
+    it 'renders index view' do
       subject
       expect(response).to render_template(:index)
     end
 
     it 'returns a successful response' do
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe 'GET #new' do
+    subject { get :new }
+
+    it 'it assigns a new instance of an event' do
+      subject
+      expect(assigns(:event)).to be_a_new Event
+    end
+
+    it 'renders view' do
+      subject
+      expect(response).to render_template(:new)
+    end
+
+    it 'returns a successful response' do
+      subject
       expect(response).to have_http_status(:success)
     end
   end
