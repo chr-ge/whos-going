@@ -8,19 +8,50 @@
   <% end %>
   <%= link_to "Add New Contact", new_contact_path, class: "ml-2 bg-gray-700 hover:bg-gray-800 rounded text-white p-2 text-center" %>
 </div>
-<div class="flex flex-col h-full mt-2 border border-gray-800 rounded">
-  <% @contacts.each do |contact| %>
-    <div class="flex items-center justify-between border-b border-gray-800 last:border-b-0">
-      <%= link_to contact, class: "flex items-center p-4 w-full" do %>
-        <%= contact_image contact, class: "w-8 h-8 rounded-md"%>
-        <h1 class="ml-4 text-black"><%= contact.full_name %></h1>
+<div class="mt-6 overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+  <table class="min-w-full divide-y divide-gray-200">
+    <thead>
+      <tr>
+        <th class="px-4 py-3 text-sm leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100">Full Name</th>
+        <th class="px-4 py-3 text-sm leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100">Email Address</th>
+        <th class="px-4 py-3 text-sm leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100">Phone Number</th>
+        <th class="px-4 py-3 text-sm leading-4 tracking-wider text-left text-gray-500 uppercase bg-gray-100">Organization</th>
+        <th class="px-4 py-3 bg-gray-100"></th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <% if @contacts.each do |contact| %>
+        <tr>
+          <td class="px-6 py-4 whitespace-no-wrap">
+            <%= link_to contact, class: "flex items-center w-full" do %>
+              <%= contact_image contact, class: "w-10 h-10 rounded-md"%>
+              <span class="ml-4"><%= contact.full_name %></span>
+            <% end %>
+          </td>
+          <td class="px-6 py-4 whitespace-no-wrap "><%= contact.emails.first.email %></td>
+          <td class="px-6 py-4 whitespace-no-wrap"><%= contact.phone_numbers.first.phone_number %></td>
+          <td class="px-6 py-4 whitespace-no-wrap"><%= contact.organization %></td>
+          <td class="px-6 py-4 whitespace-no-wrap">
+            <div class="flex items-center justify-end">
+              <%= link_to contact_path(contact) do %>
+                <%= inline_svg_tag "contact.svg", class: "h-8 w-8 mr-1 bg-purple-200 hover:bg-purple-300 rounded" %>
+              <% end %>
+              <%= link_to edit_contact_path(contact) do %>
+                <%= inline_svg_tag "edit.svg", class: "h-8 w-8 mx-1 bg-gray-300 hover:bg-gray-400 rounded" %>
+              <% end %>
+              <%= link_to contact, method: :delete do %>
+                <%= inline_svg_tag "trash.svg", class: "h-8 w-8 ml-1 bg-red-200 hover:bg-red-300 rounded" %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end.empty? %>
+        <tr>
+          <td colspan="5" class="px-6 py-4 text-center whitespace-no-wrap">
+            No Contacts Found.
+          </td>
+        </tr>
       <% end %>
-      <%= link_to edit_contact_path(contact) do %>
-        <%= inline_svg_tag "edit.svg", class: "h-8 w-8 bg-gray-300 hover:bg-gray-400 rounded" %>
-      <% end %>
-      <%= link_to contact, method: :delete do %>
-        <%= inline_svg_tag "trash.svg", class: "h-8 w-8 m-4 bg-red-200 hover:bg-red-300 rounded" %>
-      <% end %>
-    </div>
-  <% end %>
+    </tbody>
+  </table>
 </div>
