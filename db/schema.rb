@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_01_204216) do
+ActiveRecord::Schema.define(version: 2020_11_04_001138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -42,6 +42,18 @@ ActiveRecord::Schema.define(version: 2020_11_01_204216) do
     t.index ["contact_id"], name: "index_phone_numbers_on_contact_id"
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.string "tag", null: false
+    t.bigint "person_id"
+    t.bigint "contact_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_id"], name: "index_relationships_on_contact_id"
+    t.index ["person_id"], name: "index_relationships_on_person_id"
+  end
+
   add_foreign_key "emails", "contacts"
   add_foreign_key "phone_numbers", "contacts"
+  add_foreign_key "relationships", "contacts"
+  add_foreign_key "relationships", "contacts", column: "person_id"
 end
