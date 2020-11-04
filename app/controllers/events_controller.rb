@@ -11,6 +11,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @event.rsvps.build
   end
 
   def create
@@ -43,6 +44,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :date, :attendees)
+    params.require(:event).permit(:name, :date, :attendees, rsvps_attributes: %i[id rsvp contact_id _destroy])
   end
 end

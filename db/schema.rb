@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_04_024536) do
+ActiveRecord::Schema.define(version: 2020_11_04_174850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -60,8 +60,20 @@ ActiveRecord::Schema.define(version: 2020_11_04_024536) do
     t.index ["person_id"], name: "index_relationships_on_person_id"
   end
 
+  create_table "rsvps", force: :cascade do |t|
+    t.boolean "rsvp", null: false
+    t.bigint "contact_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["contact_id"], name: "index_rsvps_on_contact_id"
+    t.index ["event_id"], name: "index_rsvps_on_event_id"
+  end
+
   add_foreign_key "emails", "contacts"
   add_foreign_key "phone_numbers", "contacts"
   add_foreign_key "relationships", "contacts"
   add_foreign_key "relationships", "contacts", column: "person_id"
+  add_foreign_key "rsvps", "contacts"
+  add_foreign_key "rsvps", "events"
 end
