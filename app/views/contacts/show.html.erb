@@ -1,9 +1,9 @@
-<div class="flex items-center justify-between">
+<div class="flex flex-col items-center justify-between lg:flex-row">
   <div class="flex items-center">
     <%= contact_image @contact, class: "w-16 h-16 rounded-md"%>
     <h1 class="ml-4 text-3xl font-bold"><%= @contact.full_name %></h1>
   </div>
-  <div class="flex">
+  <div class="flex mt-4 lg:mt-0">
     <%= link_to edit_contact_path @contact do %>
       <%= inline_svg_tag "edit.svg", class: "mr-2 w-10 h-10 hover:bg-gray-100 rounded"%>
     <% end %>
@@ -12,15 +12,15 @@
     <% end %>
   </div>
 </div>
-<div class="p-6 mt-4 bg-white rounded-lg shadow">
+<div class="p-6 mt-4 bg-white md:rounded-lg md:shadow-md">
   <div class="relative p-2 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
     <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
       <p class="px-1 text-gray-600 bg-white">Organization</p>
     </div>
     <p class="block w-full h-full px-2 py-1 text-gray-900 outline-none"><%= @contact.organization %></p>
   </div>
-  <div class="flex my-10">
-    <div class="w-1/2 mr-3">
+  <div class="flex flex-col my-10 lg:flex-row">
+    <div class="w-full lg:mr-3 lg:w-1/2">
       <div class="relative h-full p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500" >
         <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
           <p class="px-1 text-gray-600 bg-white">Emails</p>
@@ -37,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div class="w-1/2 ml-3">
+    <div class="w-full mt-10 lg:ml-3 lg:w-1/2 lg:mt-0">
       <div class="relative h-full p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
         <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
           <p class="px-1 text-gray-600 bg-white">Phone Numbers</p>
@@ -55,10 +55,29 @@
       </div>
     </div>
   </div>
-  <div class="relative p-1 py-2 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
-    <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
-      <p class="px-1 text-gray-600 bg-white">Notes</p>
+  <div class="flex flex-col my-10 lg:flex-row">
+    <div class="w-full lg:mr-3 lg:w-1/2">
+      <div class="relative h-full p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500" >
+        <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+          <p class="px-1 text-gray-600 bg-white">Relationships</p>
+        </div>
+        <div class="grid items-center w-full grid-cols-6 p-2">
+          <% @contact.relationships.each do |r| %>
+            <div class="py-1 col-span-full">
+              <%= link_to "#{r.person.full_name}' ", contact_path(r.person), class: "hover:border-b-2" %>
+              <span class="font-semibold"><%= r.tag %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <textarea class="p-2 pointer-events-none resize-none select-none focus:outline-none focus:shadow-outline"><%= @contact.notes %></textarea>
+    <div class="w-full mt-10 lg:ml-3 lg:w-1/2 lg:mt-0">
+      <div class="relative p-1 py-2 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
+        <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+          <p class="px-1 text-gray-600 bg-white">Notes</p>
+        </div>
+        <textarea class="p-2 pointer-events-none resize-none select-none focus:outline-none focus:shadow-outline"><%= @contact.notes %></textarea>
+      </div>
+    </div>
   </div>
 </div>
