@@ -66,4 +66,25 @@ RSpec.describe EventsController, type: :controller do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    let!(:event) { create(:event) }
+
+    subject { delete :destroy, params: { id: event.id } }
+
+    it 'deletes an event successfully' do
+      expect { subject }.to change(Event, :count).by(-1)
+      expect { Event.find(event.id) }.to raise_exception(ActiveRecord::RecordNotFound)
+    end
+
+    it 'sends successful flash message' do
+      subject
+      expect(flash[:notice]).to eq('Event deleted successfully!')
+    end
+
+    it 'redirects to all campaigns' do
+      subject
+      expect(response).to redirect_to events_path
+    end
+  end
 end
