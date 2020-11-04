@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
       @contacts = Contact.search_for(params[:search])
       render :search
     else
-      @contacts = Contact.order('full_name ASC')
+      @contacts = Contact.sorted
     end
   end
 
