@@ -41,4 +41,29 @@ RSpec.describe EventsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'POST #create' do
+    subject { post :create, params: { event: params } }
+
+    context 'with valid params' do
+      let!(:params) { { name: 'Christmas', date: 3.months.from_now, attendees: 50 } }
+
+      it 'creates a new contact' do
+        expect { subject }.to change(Event, :count).by(1)
+      end
+
+      it 'redirects to #index' do
+        expect(subject).to redirect_to events_path
+      end
+    end
+
+    context 'with invalid params' do
+      let!(:params) { { name: '', date: '', attendees: '50' } }
+
+      it 're-renders #new' do
+        subject
+        expect(response).to render_template(:new)
+      end
+    end
+  end
 end
