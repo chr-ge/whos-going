@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[show update destroy]
+  before_action :set_event, only: %i[show edit update destroy]
 
   def index
     @events = Event.all
   end
 
-  def show; end
+  def show
+    @positives = @event.rsvps.where(rsvp: true)
+    @negatives = @event.rsvps.where(rsvp: false)
+  end
 
   def new
     @event = Event.new
@@ -23,6 +26,8 @@ class EventsController < ApplicationController
       render :new
     end
   end
+
+  def edit; end
 
   def update
     if @event.update(event_params)

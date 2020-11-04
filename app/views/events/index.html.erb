@@ -1,5 +1,5 @@
 <h1 class="mx-2 text-3xl font-bold lg:mx-0">Events</h1>
-<div class="flex mx-2 mt-3 mb-5 lg:mx-0">
+<div class="flex mx-2 my-3 lg:mx-0">
   <%= form_tag contacts_path, method: :get, class: "flex w-full px-4 py-2 bg-gray-800 rounded focus-within:bg-gray-700" do %>
     <%= text_field_tag :search, params[:search], placeholder: "Search", 'aria-label': "Search", class: "w-full text-sm leading-tight text-gray-100 placeholder-gray-200 bg-gray-800 focus:outline-none focus:bg-gray-700" %>
     <%= button_tag type: :submit, name: nil do %>
@@ -8,15 +8,18 @@
   <% end %>
   <%= link_to "Create New Event", new_event_path, class: "ml-2 bg-gray-700 hover:bg-gray-800 rounded text-white p-2 text-center" %>
 </div>
-<div class="flex flex-col h-full mx-2 mt-2 border border-gray-800 rounded lg:mx-0">
+<div class="flex flex-col h-full mx-2 mt-2 rounded lg:mx-0">
   <% @events.each do |event| %>
-    <div class="flex items-center justify-between bg-white border-b border-gray-800 last:border-b-0">
+    <div class="flex items-center justify-between my-2 bg-white border border-gray-800 rounded-md">
       <%= link_to event, class: "flex items-center p-4 w-full" do %>
-        <div>
-          <p class="ml-4 text-lg font-semibold text-black"><%= event.name %></p>
+        <div class="w-full lg:w-1/5">
+          <p class="mb-1 ml-4 text-lg font-semibold text-black"><%= event.name %></p>
           <p class="ml-4 text-black"><%= time_tag event.date %></p>
         </div>
-        <p class="py-4 pl-6 ml-6 border-l-2 border-gray-500"><%= "#{event.attendees} people" %></p>
+        <p class="py-4 pl-8 ml-6 lg:border-gray-500 lg:border-l-2">
+          <span class="p-1 px-2 mr-2 font-bold bg-purple-300 rounded"><%= event.available %></span>
+          open spots
+        </p>
       <% end %>
       <%= link_to edit_event_path(event) do %>
         <%= inline_svg_tag "edit.svg", class: "h-8 w-8 m-4 bg-gray-300 hover:bg-gray-400 rounded" %>
