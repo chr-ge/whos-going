@@ -87,6 +87,31 @@ RSpec.describe EventsController, type: :controller do
     end
   end
 
+  describe 'PUT #update' do
+    let!(:event) { create(:event) }
+    subject { put :update, params: { id: event.id, event: params } }
+
+    context 'with valid params' do
+      let!(:params) { { name: 'Halloween', date: 1.years.from_now, attendees: 75 } }
+
+      it 'updates the contact' do
+        subject
+        expect(event.reload.name).to eq('Halloween')
+        expect(event.reload.date).to be_within(1.second).of 1.years.from_now
+        expect(event.reload.attendees).to eq(75)
+      end
+
+      it 'sends successful flash message' do
+        subject
+        expect(flash[:notice]).to eq('Event updated successfully.')
+      end
+
+      it 'redirects to event' do
+        expect(subject).to redirect_to event
+      end
+    end
+  end
+
   describe 'DELETE #destroy' do
     let!(:event) { create(:event) }
 

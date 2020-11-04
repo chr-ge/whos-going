@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[show destroy]
+  before_action :set_event, only: %i[show update destroy]
 
   def index
     @events = Event.all
@@ -20,6 +20,14 @@ class EventsController < ApplicationController
       redirect_to events_path, notice: 'Event created successfully!'
     else
       render :new
+    end
+  end
+
+  def update
+    if @event.update(event_params)
+      redirect_to @event, notice: 'Event updated successfully.'
+    else
+      render :edit
     end
   end
 
