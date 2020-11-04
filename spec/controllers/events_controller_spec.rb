@@ -23,6 +23,26 @@ RSpec.describe EventsController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    let!(:event) { create(:event) }
+
+    subject { get :show, params: { id: event.id } }
+
+    it 'sets event as @event' do
+      subject
+      expect(assigns(:event)).to eq event
+    end
+
+    it 'renders view' do
+      subject
+      expect(response).to render_template(:show)
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe 'GET #new' do
     subject { get :new }
 
