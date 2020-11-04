@@ -1,4 +1,4 @@
-<div class="p-6 bg-white rounded-lg shadow">
+<div class="p-6 bg-white md:rounded-lg md:shadow-md">
   <%= form_with(model: @contact, local: true) do |f| %>
     <div class="grid gap-6 lg:grid-cols-2">
       <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
@@ -30,16 +30,14 @@
           <div class="flex items-center justify-center h-12 p-4 mx-2 my-4 bg-gray-200 rounded-lg shadow-inner">
             <%= link_to_add_association f, :emails, class: "flex items-center px-2 py-1 border border-gray-400 border-dashed rounded cursor-pointer", data: { association_insertion_node: '#emails_field', association_insertion_method: :append } do %>
               <div>
-                <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
+                <%= inline_svg_tag "plus.svg" %>
               </div>
-              <div class="mx-1 font-medium text-gray-500">Add Another Email</div>
+              <div class="mx-1 font-medium text-gray-500">Add an Email</div>
             <% end %>
           </div>
         </div>
       </div>
-      <div class="w-full mt-8 lg:ml-3 lg:w-1/2 lg:mt-0">
+      <div class="w-full mt-10 lg:ml-3 lg:w-1/2 lg:mt-0">
         <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
           <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
             <p class="px-1 text-gray-600 bg-white">Phone Numbers</p>
@@ -52,23 +50,45 @@
           <div class="flex items-center justify-center h-12 p-4 mx-2 my-4 bg-gray-200 rounded-lg shadow-inner">
             <%= link_to_add_association f, :phone_numbers, class: "flex items-center px-2 py-1 border border-gray-400 border-dashed rounded cursor-pointer", data: { association_insertion_node: '#phones_field', association_insertion_method: :append } do %>
               <div>
-                <svg class="w-6 h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
+                <%= inline_svg_tag "plus.svg" %>
               </div>
-              <div class="mx-1 font-medium text-gray-500">Add Another Phone Number</div>
+              <div class="mx-1 font-medium text-gray-500">Add a Phone Number</div>
             <% end %>
           </div>
         </div>
       </div>
     </div>
-    <div class="relative p-1 py-2 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
-      <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
-        <p><%= f.label :notes, class: "px-1 text-gray-600 bg-white" %></p>
+    <div class="flex flex-col my-10 lg:flex-row">
+      <div class="w-full lg:mr-3 lg:w-1/2">
+        <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500" >
+          <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+            <p class="px-1 text-gray-600 bg-white">Relationships</p>
+          </div>
+          <div id="relationships_field">
+            <%= f.fields_for :relationships do |r| %>
+              <% render 'relationship_fields', f: r %>
+            <% end %>
+          </div>
+          <div class="flex items-center justify-center h-12 p-4 mx-2 my-4 bg-gray-200 rounded-lg shadow-inner">
+            <%= link_to_add_association f, :relationships, class: "flex items-center px-2 py-1 border border-gray-400 border-dashed rounded cursor-pointer", data: { association_insertion_node: '#relationships_field', association_insertion_method: :append } do %>
+              <div>
+                <%= inline_svg_tag "plus.svg" %>
+              </div>
+              <div class="mx-1 font-medium text-gray-500">Add a Relationship</div>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <p>
-        <%= f.text_area :notes, rows: 4, class: "block w-full h-full p-2 text-gray-900 outline-none", tabindex: 0, style: "max-height: 300px" %>
-      </p>
+      <div class="w-full lg:ml-3 lg:w-1/2">
+        <div class="relative p-1 py-2 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
+          <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+            <p><%= f.label :notes, class: "px-1 text-gray-600 bg-white" %></p>
+          </div>
+          <p>
+            <%= f.text_area :notes, rows: 4, class: "notes block w-full h-full p-2 text-gray-900 outline-none", tabindex: 0 %>
+          </p>
+        </div>
+      </div>
     </div>
     <div class="pt-3 mt-6 text-center border-t">
       <%= f.submit "Save Contact", class: "px-3 py-1 text-gray-100 transition-all duration-300 bg-purple-600 rounded hover:shadow-inner hover:bg-purple-700 cursor-pointer" %>
