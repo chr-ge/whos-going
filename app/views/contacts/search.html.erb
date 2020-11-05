@@ -47,8 +47,11 @@
         </tr>
       <% end.empty? %>
         <tr>
-          <td colspan="5" class="p-6 text-center whitespace-no-wrap">
-            No Contacts Found.
+          <td colspan="5" class="p-5 whitespace-no-wrap">
+            <div class="flex items-center justify-center">
+              <%= inline_svg_tag "not-found.svg", class: "w-6 h-6 mr-3" %>
+              No Contacts Found
+            </div>
           </td>
         </tr>
       <% end %>

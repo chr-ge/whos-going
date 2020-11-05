@@ -1,0 +1,6 @@
+<% flash.each do |type, message| %>
+  <div class="flex items-center justify-center <%= type == 'notice' ? 'bg-indigo-500' : 'bg-red' %> text-white text-sm font-bold px-4 py-3" role="alert">
+    <%= inline_svg_tag "info.svg", class: "w-6 h-6 mr-2 fill-current" %>
+    <p><%= message %></p>
+  </div>
+<% end %>

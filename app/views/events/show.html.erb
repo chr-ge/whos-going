@@ -12,3 +12,49 @@
     <% end %>
   </div>
 </div>
+<div class="p-8 mt-4 bg-white md:rounded-lg md:shadow-md">
+  <div class="flex">
+    <div class="relative w-1/2 mr-4 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
+      <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+        <p class="px-1 text-gray-600 bg-white">Event Date</p>
+      </div>
+      <p class="block w-full h-full p-2 text-center text-gray-900 outline-none"><%= time_tag @event.date %></p>
+    </div>
+    <div class="relative w-1/2 ml-4 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
+      <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+        <p class="px-1 text-gray-600 bg-white">Number of Attendees</p>
+      </div>
+      <p class="block w-full h-full p-2 text-center text-gray-900 outline-none"><%= @event.attendees %></p>
+    </div>
+  </div>
+  <div class="flex flex-col mt-10 lg:flex-row">
+    <div class="w-full lg:mr-4 lg:w-1/2">
+      <div class="relative h-full p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500" >
+        <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+          <p class="px-2 text-white bg-green-500 rounded">Attendees Going</p>
+        </div>
+        <div class="flex flex-col py-2">
+          <% @positives.each do |r| %>
+            <div class="w-full p-2 text-center">
+              <%= link_to r.contact.full_name, r.contact, class: "hover:border-b-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="w-full mt-10 lg:ml-4 lg:w-1/2 lg:mt-0">
+      <div class="relative h-full p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
+        <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+          <p class="px-2 text-white bg-red-500 rounded">Attendees Missing Out</p>
+        </div>
+        <div class="flex flex-col py-2">
+          <% @negatives.each do |r| %>
+            <div class="w-full p-2 text-center">
+              <%= link_to r.contact.full_name, r.contact, class: "hover:border-b-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

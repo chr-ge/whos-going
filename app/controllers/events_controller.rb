@@ -1,16 +1,20 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[show update destroy]
+  before_action :set_event, only: %i[show edit update destroy]
 
   def index
-    @events = Event.all
+    @events = Event.order('date')
   end
 
-  def show; end
+  def show
+    @positives = @event.rsvps.where(rsvp: true)
+    @negatives = @event.rsvps.where(rsvp: false)
+  end
 
   def new
     @event = Event.new
+    @event.rsvps.build
   end
 
   def create
@@ -22,6 +26,8 @@ class EventsController < ApplicationController
       render :new
     end
   end
+
+  def edit; end
 
   def update
     if @event.update(event_params)
@@ -43,6 +49,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :date, :attendees)
+    params.require(:event).permit(:name, :date, :attendees, rsvps_attributes: %i[id rsvp contact_id _destroy])
   end
 end
