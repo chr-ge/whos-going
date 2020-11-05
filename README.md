@@ -1,4 +1,6 @@
-# 📇 Who's Going
+<img src="/app/assets/images/logo.png?raw=true" alt="drawing" width="125" align="right" />
+
+# who's going
 
 ## **Live Staging Site**
 - https://who-s-going.herokuapp.com/
