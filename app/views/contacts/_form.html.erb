@@ -1,13 +1,16 @@
-<div class="p-6 bg-white md:rounded-lg md:shadow-md">
+<div class="p-8 bg-white md:rounded-lg md:shadow-md">
   <%= form_with(model: @contact, local: true) do |f| %>
     <div class="grid gap-6 lg:grid-cols-2">
-      <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
-        <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
-          <p><%= f.label :full_name, class: "px-1 text-gray-600 bg-white" %></p>
+      <div>
+        <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
+          <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+            <p><%= f.label :full_name, class: "px-1 text-gray-600 bg-white" %></p>
+          </div>
+          <p>
+            <%= f.text_field :full_name, autofocus: true, autocomplete: false, class: "block w-full h-full px-2 py-1 text-gray-900 outline-none", tabindex: 0 %>
+          </p>
         </div>
-        <p>
-          <%= f.text_field :full_name, autofocus: true, autocomplete: false, class: "block w-full h-full px-2 py-1 text-gray-900 outline-none", tabindex: 0 %>
-        </p>
+        <%= render partial: 'shared/errors', locals: { collection: @contact, error: :full_name } %>
       </div>
       <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
         <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
