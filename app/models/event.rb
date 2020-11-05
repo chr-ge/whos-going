@@ -10,6 +10,6 @@ class Event < ApplicationRecord
   validates :attendees, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   def available
-    attendees - rsvps.where(rsvp: true).count
+    attendees < rsvps.where(rsvp: true).count ? "0" : attendees - rsvps.where(rsvp: true).count
   end
 end
