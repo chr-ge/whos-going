@@ -7,7 +7,6 @@ RSpec.describe Rsvp, type: :model do
 
   describe 'Validations' do
     it { is_expected.to be_valid }
-    it { is_expected.to validate_presence_of(:rsvp) }
   end
 
   describe 'Associations' do

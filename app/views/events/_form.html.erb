@@ -1,29 +1,38 @@
 <div class="p-6 bg-white md:rounded-lg md:shadow-md">
   <%= form_with(model: @event, local: true) do |f| %>
-    <div class="flex">
-      <div class="w-1/2 mr-5">
-        <div class="relative p-1 mb-8 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
-          <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
-            <p><%= f.label :name, class: "px-1 text-gray-600 bg-white" %></p>
+    <div class="flex flex-col lg:flex-row">
+      <div class="w-full mr-5 lg:w-1/2">
+        <div class="mb-8">
+          <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
+            <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+              <p><%= f.label :name, class: "px-1 text-gray-600 bg-white" %></p>
+            </div>
+            <p>
+              <%= f.text_field :name, autofocus: true, autocomplete: false, class: "block w-full h-full px-2 py-1 text-gray-900 outline-none", tabindex: 0 %>
+            </p>
           </div>
-          <p>
-            <%= f.text_field :name, autofocus: true, autocomplete: false, class: "block w-full h-full px-2 py-1 text-gray-900 outline-none", tabindex: 0 %>
-          </p>
+          <%= render partial: 'shared/errors', locals: { collection: @event, error: :name } %>
         </div>
-        <div class="relative p-1 my-8 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
-          <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
-            <p><%= f.label :date, class: "px-1 text-gray-600 bg-white" %></p>
+        <div class="my-8">
+          <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
+            <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+              <p><%= f.label :date, class: "px-1 text-gray-600 bg-white" %></p>
+            </div>
+            <div class="w-full px-2 py-3 text-center text-gray-900"><%= f.datetime_select :date %></div>
           </div>
-          <p class="w-full px-2 py-3 text-center text-gray-900"><%= f.datetime_select :date %></p>
+          <%= render partial: 'shared/errors', locals: { collection: @event, error: :date } %>
         </div>
-        <div class="relative p-1 mt-8 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
-          <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
-            <p><%= f.label "Number of Attendees", class: "px-1 text-gray-600 bg-white" %></p>
+        <div class="mt-8">
+          <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500">
+            <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
+              <p><%= f.label "Number of Attendees", class: "px-1 text-gray-600 bg-white" %></p>
+            </div>
+            <%= f.text_field :attendees, autocomplete: false, class: "block w-full h-full px-2 py-1 text-gray-900 outline-none", tabindex: 0 %>
           </div>
-          <p><%= f.text_field :attendees, autocomplete: false, class: "block w-full h-full px-2 py-1 text-gray-900 outline-none", tabindex: 0 %></p>
+          <%= render partial: 'shared/errors', locals: { collection: @event, error: :attendees } %>
         </div>
       </div>
-      <div class="w-1/2 ml-5">
+      <div class="w-full mt-8 lg:w-1/2 lg:ml-5 lg:mt-0">
         <div class="relative p-1 transition-all duration-500 border rounded focus-within:border-blue-500 focus-within:text-blue-500" >
           <div class="absolute px-1 -mt-4 text-xs tracking-wider uppercase">
             <p class="px-1 text-gray-600 bg-white">RSVP</p>

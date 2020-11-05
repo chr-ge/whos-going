@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :rsvp do
     rsvp { FFaker::Boolean.random }
-    association :contact, factory: :contact
+    contact
     event
   end
 end
