@@ -48,7 +48,7 @@
               <%= p.label %>
             </div>
             <div class="col-span-5 py-1">
-              <%= p.phone_number %>
+              <%= number_to_phone p.phone_number, area_code: true %>
             </div>
           <% end %>
         </div>
