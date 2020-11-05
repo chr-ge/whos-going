@@ -14,7 +14,6 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @event.rsvps.build
   end
 
   def create
