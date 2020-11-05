@@ -1,5 +1,8 @@
 # 📇 Who's Going
 
+## **Live Staging Site**
+- https://who-s-going.herokuapp.com/
+
 ## Ruby version
 - 2.7.1
 
@@ -15,9 +18,6 @@
 
 ## How to run the test suite
 - Run Specs with `rspec`
-
-### **Live Staging Site**
-- https://who-s-going.herokuapp.com/
 
 ## Deployment instructions
 - Continuous Integration w/ CircleCi + Heroku
