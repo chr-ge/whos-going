@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :event do
     name { FFaker::CheesyLingo.title }
     date { FFaker::Time.between(Time.now, 3.years.from_now) }
-    attendees { rand 1..500 }
+    attendees { rand 1..120 }
 
     factory :event_with_rsvps do
       transient do
