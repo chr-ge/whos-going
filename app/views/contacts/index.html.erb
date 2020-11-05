@@ -4,14 +4,16 @@
 </div>
 <div class="flex mx-2 mt-3 mb-5 lg:mx-0">
   <%= form_tag contacts_path, method: :get, class: "flex w-full px-4 py-2 bg-gray-800 rounded focus-within:bg-gray-700" do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search", 'aria-label': "Search", class: "w-full text-sm leading-tight text-gray-100 placeholder-gray-200 bg-gray-800 focus:outline-none focus:bg-gray-700" %>
+    <%= search_field_tag :search, params[:search], placeholder: "Search", 'aria-label': "Search", class: "w-full text-sm leading-tight text-gray-100 placeholder-gray-200 bg-gray-800 focus:outline-none focus:bg-gray-700" %>
     <%= button_tag type: :submit, name: nil do %>
       <%= inline_svg_tag "search.svg", class: "w-8 h-8" %>
     <% end %>
   <% end %>
-  <%= link_to "Add New Contact", new_contact_path, class: "ml-2 bg-gray-700 hover:bg-gray-800 rounded text-white p-2 text-center" %>
+  <%= link_to new_contact_path, class: "create-contact ml-2 p-2 text-center rounded-md" do %>
+    <span>Add New Contact</span>
+  <% end %>
 </div>
-<div class="flex flex-col h-full mx-2 mt-2 border border-gray-800 rounded lg:mx-0">
+<div class="flex flex-col h-full mx-2 mt-2 bg-white border border-gray-800 rounded-md lg:mx-0">
   <% @contacts.each do |contact| %>
     <div class="flex items-center justify-between border-b border-gray-800 last:border-b-0">
       <%= link_to contact, class: "flex items-center p-4 w-full" do %>
