@@ -23,4 +23,24 @@ class Contact < ApplicationRecord
                   },
                   against: %i[full_name organization notes],
                   order_within_rank: 'contacts.full_name ASC'
+
+  def primary_email
+    return unless emails.present?
+
+    if emails.find_by(label: 'Email')
+      emails.find_by(label: 'Email').email
+    else
+      emails.first.email
+    end
+  end
+
+  def primary_phone_number
+    return unless phone_numbers.present?
+
+    if phone_numbers.find_by(label: 'Phone')
+      phone_numbers.find_by(label: 'Phone').phone_number
+    else
+      phone_numbers.first.phone_number
+    end
+  end
 end
