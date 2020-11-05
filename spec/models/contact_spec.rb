@@ -9,4 +9,10 @@ RSpec.describe Contact, type: :model do
     it { is_expected.to be_valid }
     it { is_expected.to validate_presence_of(:full_name) }
   end
+
+  describe 'Associations' do
+    it { is_expected.to have_many(:emails) }
+    it { is_expected.to have_many(:phone_numbers) }
+    it { is_expected.to have_many(:relationships) }
+  end
 end

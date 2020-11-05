@@ -11,14 +11,13 @@ class Event < ApplicationRecord
   validate  :date_cannot_be_in_past
 
   def available
-    attendees < rsvps.where(rsvp: true).count ? '0' : attendees - rsvps.where(rsvp: true).count
+    count = rsvps.where(rsvp: true).count
+    attendees < count ? 0 : attendees - count
   end
 
   private
 
   def date_cannot_be_in_past
-    if date.present? && date < Date.today
-      errors.add(:date, "can't be in the past")
-    end
+    errors.add(:date, "can't be in the past") if date.present? && date < Date.today
   end
 end
