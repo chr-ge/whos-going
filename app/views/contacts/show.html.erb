@@ -5,10 +5,10 @@
   </div>
   <div class="flex mt-4 lg:mt-0">
     <%= link_to edit_contact_path @contact do %>
-      <%= inline_svg_tag "edit.svg", class: "mr-2 w-10 h-10 hover:bg-gray-100 rounded"%>
+      <%= inline_svg_tag "edit.svg", class: "mr-2 w-10 h-10 bg-gray-100 rounded hover:bg-gray-400"%>
     <% end %>
     <%= link_to @contact, method: :delete, data: { confirm: 'Are you sure?' } do %>
-      <%= inline_svg_tag "trash.svg", class: "w-10 h-10 hover:bg-red-100 rounded"%>
+      <%= inline_svg_tag "trash.svg", class: "w-10 h-10 bg-red-100 hover:bg-red-200 rounded"%>
     <% end %>
   </div>
 </div>
