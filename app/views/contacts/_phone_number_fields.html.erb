@@ -3,6 +3,7 @@
     <%= f.select :label, PhoneNumber::LABELS, {}, class: "font-semibold text-gray-600" %>
     <%= f.telephone_field :phone_number, class: "mx-4 w-full text-gray-800" %>
   </div>
+  <%= render partial: 'shared/errors', locals: { collection: @contact, error: 'phone_numbers.phone_number' } %>
   <%= link_to_remove_association f, class: "flex items-center justify-center p-2 bg-red-400 rounded-full shadow-md hover:bg-red-500" do %>
     <svg class="w-4 h-4 text-white toggle__lock" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
